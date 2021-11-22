@@ -69,7 +69,7 @@ class Home extends React.Component {
       })
       .then((response) => {
         if (response.status === 200) {
-          window.open("http://localhost:4000/annotation.csv", "_blank");
+          window.open("http://localhost:4000/annotation.xlsx", "_blank");
           window.location.reload();
         }
       });

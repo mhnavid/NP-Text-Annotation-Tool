@@ -19,7 +19,7 @@ exports.exportDataToCSV = async (request, response) => {
     }
 
     await writeXlsxFile(data, {
-        filePath: "./public/annotation.csv",
+        filePath: "./public/annotation.xlsx",
       });
     
     response.status(200).send({
