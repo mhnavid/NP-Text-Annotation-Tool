@@ -1,4 +1,5 @@
 const writeXlsxFile = require("write-excel-file/node");
+const fs = require("fs");
 
 exports.exportDataToCSV = async (request, response) => {
     let annotationData = request.body.annotationData;
@@ -16,6 +17,10 @@ exports.exportDataToCSV = async (request, response) => {
               value: annotationData[i].text,
             },
         ])
+    }
+
+    if (!fs.existsSync("./public")) {
+      fs.mkdirSync("./public");
     }
 
     await writeXlsxFile(data, {
