@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import {
   Button,
   Col,
@@ -57,6 +58,7 @@ class Home extends React.Component {
         },
         () => this.clearInputs()
       );
+      this.setInputFocus();
     } else {
       alert("No image left!");
     }
@@ -73,6 +75,10 @@ class Home extends React.Component {
           window.location.reload();
         }
       });
+  }
+
+  setInputFocus() {
+    ReactDOM.findDOMNode(this.myInputRef).focus();
   }
 
   render() {
@@ -157,10 +163,12 @@ class Home extends React.Component {
                   <FormGroup>
                     <Label for="metro">Metro</Label>
                     <Input
+                      ref={(c) => (this.myInputRef = c)}
                       id="metro"
                       name="metro"
                       placeholder="Metro"
                       type="text"
+                      autoFocus
                       value={this.state.metroText}
                       onChange={(e) =>
                         this.setState({ metroText: e.target.value })
@@ -202,7 +210,9 @@ class Home extends React.Component {
               </Row>
               <Row className="text-center" style={{ marginTop: "20px" }}>
                 <Col>
-                  <Button color="primary">Next Image</Button>
+                  <Button color="primary" type="submit">
+                    Next Image
+                  </Button>
                 </Col>
               </Row>
             </Form>
